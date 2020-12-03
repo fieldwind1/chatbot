@@ -30,8 +30,7 @@ Lita.configure do |config|
   ## Example: Set configuration for any loaded handlers. See the handler's
   ## documentation for options.
   # config.handlers.some_handler.some_config_key = "value"
-  if ENV['RACK_ENV']=='prok.token = "xoxb-1474502382788-1468548573459-R0p8tZCZfWnvpl2NJadCU0eo"
-duction'
+  if ENV['RACK_ENV']=='production'
     config.robot.adapter=:slack
     config.redis[:url]=ENV.fetch('REDIS_URL')
   else
@@ -39,5 +38,5 @@ duction'
   end
 
 
-  config.adapters.slac
+  config.adapters.slack.token = "xoxb-1474502382788-1468548573459-rcsrVDaAT3ePiokdQzm03FWx"
 end
