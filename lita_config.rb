@@ -31,12 +31,13 @@ Lita.configure do |config|
   ## documentation for options.
   # config.handlers.some_handler.some_config_key = "value"
   if ENV['RACK_ENV']=='production'
-    config.robot.adapter=:slack
+    config.robot.adapter = :slack
     config.redis[:url]=ENV.fetch('REDIS_URL')
   else
     config.robot.adapter=:shell
   end
 
-  config.robot.adapter=:slack
+
+  config.robot.adapter = :slack
   config.adapters.slack.token = "xoxb-1474502382788-1468548573459-rcsrVDaAT3ePiokdQzm03FWx"
 end

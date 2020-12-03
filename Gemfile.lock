@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/fieldwind1/chatbot.git
-  revision: cb60264c567048b5cb612ac51496b348d50e2d6d
+  revision: 20a193f97d07f317818b9905c6edee1c45fde6c3
   specs:
     lita-counter (0.1.0)
       lita (>= 4.8)
