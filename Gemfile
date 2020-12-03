@@ -1,6 +1,10 @@
 source "https://rubygems.org"
 
 gem "lita"
+gem "lita-slack"
+gem "lita-doubler"
+
+gem 'lita-test', github: "fieldwind1/chatbot"
 
 # Uncomment to use the HipChat adapter
 # gem "lita-hipchat"
