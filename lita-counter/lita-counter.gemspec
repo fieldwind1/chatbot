@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "lita-counter"
-  spec.version       = "0.1.0"
+  spec.version       = "0.1.1"
   spec.authors       = ["fieldwind"]
   spec.email         = ["fiedlwind@sina.com"]
   spec.description   = "Doubles numbers - simple demo skill"
