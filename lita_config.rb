@@ -91,7 +91,7 @@ Lita.configure do |config|
   
   config.robot.adapter = :slack
   
-  config.adapters.slack.token = "xoxb-1474502382788-1468548573459-rcsrVDaAT3ePiokdQzm03FWx"
+  config.adapters.slack.token = "xoxb-1474502382788-1468548573459-gxIY6mnl34WQQBDeWtkslIe1"
 
 
   
