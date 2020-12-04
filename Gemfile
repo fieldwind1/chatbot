@@ -5,6 +5,7 @@ gem "lita-slack"
 gem "lita-doubler"
 
 gem 'lita-counter', github: "fieldwind1/chatbot"
+gem 'lita-calender', github: "fieldwind1/chatbot"
 
 # Uncomment to use the HipChat adapter
 # gem "lita-hipchat"
