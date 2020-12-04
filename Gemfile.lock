@@ -1,7 +1,9 @@
 GIT
   remote: https://github.com/fieldwind1/chatbot.git
-  revision: 20a193f97d07f317818b9905c6edee1c45fde6c3
+  revision: cdafef70472dd1af901fe36ad73ee0712be0898a
   specs:
+    lita-calender (0.1.0)
+      lita (>= 4.8)
     lita-counter (0.1.0)
       lita (>= 4.8)
 
@@ -65,6 +67,7 @@ PLATFORMS
 
 DEPENDENCIES
   lita
+  lita-calender!
   lita-counter!
   lita-doubler
   lita-slack
