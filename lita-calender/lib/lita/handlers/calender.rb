@@ -80,7 +80,7 @@ module Lita
 		response.reply("该月日历为：")
 		response.reply("一  二  三  四  五  六  日")
 		
-		empty=" "
+		empty="-"
 		# for i in 1...final_day
 			
 		# 	print " "
@@ -98,9 +98,9 @@ module Lita
 			else
 				
 				if j>9
-					em[ll]=em[ll]+"  "+k.to_s
+					em[ll]=em[ll]+"--"+k.to_s
 				else
-					em[ll]=em[ll]+"   "+k.to_s
+					em[ll]=em[ll]+"---"+k.to_s
 				end
 			end
 		end
