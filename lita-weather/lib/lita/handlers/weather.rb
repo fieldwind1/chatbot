@@ -9,7 +9,7 @@ module Lita
           /weather(.*)/,
           :weather,
           command: true,
-          help: { 'double N' => 'prints N+N'}
+          help: { 'weather + city' => "city's weather"}
           ) 
       def weather(response)
       	message=response.matches[0][0]
