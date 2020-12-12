@@ -47,6 +47,8 @@ module Lita
 		#0 日期 1 2天气情况 3温度 4风向 5 风力
 		counter=0
 
+puts data
+
 		cut=Array.new(5, 0)
 		data.scan(regex).each{|m|
 			detial = m.split(",")
@@ -57,7 +59,6 @@ module Lita
 			wind[counter] = "wind:"+detial[4]
 			windp[counter] = "windpower:"+detial[5]
 			counter = counter+1
-			puts counter
 		}
 
 		counter=0
