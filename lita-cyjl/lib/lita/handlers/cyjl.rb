@@ -1,3 +1,4 @@
+require 'pathname'
 module Lita
   module Handlers
     class Cyjl < Handler
@@ -9,6 +10,13 @@ module Lita
           help: { 'jielong 成语' => '相应的成语'}
           ) 
       	def jl(response)
+
+      		mulu1 =  Pathname.new(File.dirname(__FILE__)).realpath
+      		mulu2 =  File.dirname(__FILE__)
+
+      		response.reply(mulu1)
+      		response.reply(mulu2)
+
       		awsl=response.matches[0][0]
       		cheat=1
 			aFile = File.open("test.txt", "r:UTF-8")
