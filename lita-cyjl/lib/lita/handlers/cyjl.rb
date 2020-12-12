@@ -37,11 +37,15 @@ module Lita
 				end
 				
       		}
-      		if(cheat==1)
-      			response.reply(datas[rand(counter1-1)])
+      		if (counter1==0)
+      			response.reply("你击败我了")
       		else
-      			response.reply("请输入成语")
-      		end
+	      		if(cheat==1)
+	      			response.reply(datas[rand(counter1-1)])
+	      		else 
+	      			response.reply("请输入成语")
+	      		end
+	      	end
    # #    		cheat=1
 			# # aFile = File.open("/test.txt", "r:UTF-8")
 			# # datas = []
