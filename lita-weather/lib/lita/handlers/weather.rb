@@ -46,6 +46,7 @@ module Lita
 		regex = /".*?,.*?,.*?,.*?,.*?,.*?,[0-9]"/ 
 		#0 日期 1 2天气情况 3温度 4风向 5 风力
 		counter=0
+
 		cut=Array.new(5, 0)
 		data.scan(regex).each{|m|
 			detial = m.split(",")
@@ -62,11 +63,16 @@ module Lita
 		hour = time.hour
 		a=date[0][10,2]
 
+		response.reply(hour)
+
 		while a.to_i<hour
 			counter=counter+1
 			a=date[counter][10,2]
+			response.reply(hour)
+			response.reply(counter)
 		end
-		puts date[counter]
+
+		response.reply(counter)
 
 		response.reply("当前天气情况：")
 
