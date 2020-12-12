@@ -19,7 +19,7 @@ module Lita
 
       		awsl=response.matches[0][0]
       		cheat=1
-			aFile = File.open("test.txt", "r:UTF-8")
+			aFile = File.open("/app/vendor/bundle/ruby/2.6.0/bundler/gems/chatbot-239717e528b5/lita-cyjl/test.txt", "r:UTF-8")
 			datas = []
 			data = []
 			conter1=0
