@@ -10,7 +10,6 @@ module Lita
           ) 
       	def jl(response)
       		awsl=response.matches[0][0]
-      		regex = /[^\x00-\xff]/ 
       		cheat=1
 			aFile = File.open("test.txt", "r:UTF-8")
 			datas = []

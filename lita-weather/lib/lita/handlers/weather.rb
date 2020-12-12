@@ -57,17 +57,28 @@ module Lita
 			windp[counter] = "windpower:"+detial[5]
 			counter = counter+1
 		}
+		counter=0
+		time = Time.new
+		hour = time.hour
+		a=date[0][10,2]
+
+		while a.to_i<hour
+			counter=counter+1
+			a=date[counter][10,2]
+		end
+		puts date[counter]
+
 		response.reply("当前天气情况：")
 
-		response.reply(date[0])
+		response.reply(date[counter])
 
-		response.reply(weather[0])
+		response.reply(weather[counter])
 
-		response.reply(temper[0])
+		response.reply(temper[counter])
 
-		response.reply(wind[0])
+		response.reply(wind[counter])
 
-		response.reply(windp[0])
+		response.reply(windp[counter])
 
       end
 
