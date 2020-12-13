@@ -11,11 +11,15 @@ module Lita
           ) 
 
       def test_way(response)
-      	aFile = File.new("data.txt", "a+:UTF-8")
-        aFile.syswrite("ABCDEF")
-        arr = IO.readlines("data.txt")
-        puts arr
+      	# aFile = File.new("data.txt", "a+:UTF-8")
+       #  aFile.syswrite("ABCDEF")
+       #  arr = IO.readlines("data.txt")
+       #  puts arr
         response.reply(response.matches[0][0])
+        Dir.entries(File.join("","")).each {|e|
+
+         puts e
+        }
       end
       Lita.register_handler(self)
     end
