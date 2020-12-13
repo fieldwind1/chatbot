@@ -17,11 +17,21 @@ module Lita
        #  arr = IO.readlines("data.txt")
        #  puts arr
         # response.reply(response.matches[0][0])
+        address = "/app/vendor/bundle/ruby/2.6.0/bundler/gems/"
 
-        # Dir.entries(File.join("/app/vendor/bundle/ruby/2.6.0/bundler/gems/","")).each {|e|
+        Dir.entries(File.join(address,"")).each {|e|
 
-        #  puts e
-        # }
+         if(e.index('bot')!=0)
+          address_add = e
+        }
+
+        address_new = address + address_add + "lita-test"
+
+        Dir.entries(File.join(address_new,"")).each {|e|
+
+          puts e
+        }
+
 
           # after(5) { |timer| response.reply("Hello, 5 seconds later!") }
           Launchy.open("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=824241582,259972087&fm=26&gp=0.jpg")
@@ -32,7 +42,8 @@ module Lita
       on :loaded, :greet
 
       def greet(payload)
-        robot.send_message(1, "
+        target = Source.new(room: payload[:room])
+        robot.send_message(target, "
                    _ooOoo_
                   o8888888o
                   88' . '88

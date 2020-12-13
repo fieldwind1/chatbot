@@ -34,7 +34,7 @@ module Lita
 					counter = counter +1
 				}
 		response.reply(pictures[rand(29)])
-    Launchy.open(pictures[rand(29)])
+    # Launchy.open(pictures[rand(29)])
 
       end
 

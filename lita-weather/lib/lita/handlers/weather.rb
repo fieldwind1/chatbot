@@ -47,7 +47,7 @@ module Lita
 		#0 日期 1 2天气情况 3温度 4风向 5 风力
 		counter=0
 
-puts data
+		puts data
 
 		cut=Array.new(5, 0)
 		data.scan(regex).each{|m|
@@ -63,7 +63,7 @@ puts data
 
 		counter=0
 		time = Time.new
-		hour = time.hour
+		hour = time.hour+8
 		a=date[0][10,2]
 
 		response.reply(hour.to_s)
