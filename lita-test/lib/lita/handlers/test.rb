@@ -23,6 +23,7 @@ module Lita
 
          if(e.index('bot')!=0)
           address_add = e
+        end
         }
 
         address_new = address + address_add + "lita-test"
