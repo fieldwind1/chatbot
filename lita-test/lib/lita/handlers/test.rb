@@ -8,7 +8,7 @@ module Lita
           /test\s+(.+)/,
           :test_way,
           command: true,
-          help: { 'double N' => 'prints N+N'}
+          help: { 'test' => 'prints N+N'}
           ) 
 
       def test_way(response)
@@ -34,26 +34,26 @@ module Lita
 
 
           # after(5) { |timer| response.reply("Hello, 5 seconds later!") }
-          Launchy.open("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=824241582,259972087&fm=26&gp=0.jpg")
+          # Launchy.open("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=824241582,259972087&fm=26&gp=0.jpg")
 
 
        
       end
-      on :loaded, :greet
+      # on :loaded, :greet
 
-      def greet(payload)
-        target = Source.new(room: payload[:room])
-        robot.send_message(target, "
-                   _ooOoo_
-                  o8888888o
-                  88' . '88
-                  (| -_- |)
-                  O|  =  |O
-               ____|`---'|____
+      # def greet(payload)
+      #   target = Source.new(room: payload[:room])
+      #   robot.send_message(target, "
+      #              _ooOoo_
+      #             o8888888o
+      #             88' . '88
+      #             (| -_- |)
+      #             O|  =  |O
+      #          ____|`---'|____
 
-           佛祖保佑      永无BUG
-          ")
-      end
+      #      佛祖保佑      永无BUG
+      #     ")
+      # end
       Lita.register_handler(self)
     end
   end
