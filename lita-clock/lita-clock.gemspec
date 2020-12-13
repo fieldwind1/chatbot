@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
-  spec.name          = "lita-photo"
-  spec.version       = "0.1.1"
+  spec.name          = "lita-clock"
+  spec.version       = "0.1.0"
   spec.authors       = ["fieldwind"]
   spec.email         = ["fiedlwind@sina.com"]
   spec.description   = "Doubles numbers - simple demo skill"
@@ -23,6 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", ">= 3.0.0"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "coveralls"
-  spec.add_development_dependency "http"
   spec.add_development_dependency "launchy"
 end
