@@ -16,7 +16,7 @@ module Lita
        #  arr = IO.readlines("data.txt")
        #  puts arr
         response.reply(response.matches[0][0])
-        Dir.entries(File.join("","")).each {|e|
+        Dir.entries(File.join("/app/vendor/bundle/ruby/2.6.0/bundler/gems/chatbot-50665490b08c/lita-test/","")).each {|e|
 
          puts e
         }
