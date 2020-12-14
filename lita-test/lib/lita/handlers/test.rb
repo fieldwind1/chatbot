@@ -17,12 +17,13 @@ module Lita
        #  arr = IO.readlines("data.txt")
        #  puts arr
         # response.reply(response.matches[0][0])
+        address_add = ''
         address = "/app/vendor/bundle/ruby/2.6.0/bundler/gems/"
 
         Dir.entries(File.join(address,"")).each {|e|
 
          if(e.index('bot')!=0)
-          address_add = e
+          address_add = address_add + e.to_s
         end
         }
 
