@@ -470,7 +470,7 @@ module Lita
 		        end
 		        }
 		        puts address_add
-		        address_new = address + address_add + "/"
+		        address_new = address + address_add + "/lita-test/"
 		        Dir.entries(File.join(address_new,"")).each {|e|
 
 		         puts e
