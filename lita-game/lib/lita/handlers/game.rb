@@ -482,11 +482,12 @@ module Lita
 		        address_new = address + address_add + "/lita-test/administer.txt"
 		        arr = IO.readlines(address_new)
 		        puts arr
-		        arr[q+2][0] = run
+		        arr[q][0] = run
 		        # File.delete("address_new")
 		        puts 1
 			    aFile = File.open("address_new", "w+:UTF-8")
 			    puts 2
+			    puts arr
 			    for i in 0..9
 			    	aFile.syswrite(arr[i])
 			    end
