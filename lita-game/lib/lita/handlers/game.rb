@@ -482,7 +482,7 @@ module Lita
 		        arr = IO.readlines(address_new)
 		        puts arr
 		        arr[q+2][0] = run
-		        File.delete("address_new")
+		        # File.delete("address_new")
 		        puts 1
 			    aFile = File.open("address_new", "w+:UTF-8")
 			    puts 2
