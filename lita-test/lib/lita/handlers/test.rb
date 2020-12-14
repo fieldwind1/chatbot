@@ -24,7 +24,8 @@ module Lita
 
         Dir.entries(File.join(address,"")).each {|e|
           puts e
-         if(e.index('bot')!=0)
+          puts e.index('bot')
+         if(e.index('bot')==5)
           address_add = address_add + e.to_s
           puts address_add
         end
