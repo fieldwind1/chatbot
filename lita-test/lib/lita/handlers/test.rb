@@ -30,19 +30,10 @@ module Lita
         end
         }
         puts address_add
-        address_new = address + address_add + "/lita-test"
-
-        Dir.entries(File.join(address_new,"")).each {|e|
-
-          puts e
-        }
-
-
-          # after(5) { |timer| response.reply("Hello, 5 seconds later!") }
-          # Launchy.open("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=824241582,259972087&fm=26&gp=0.jpg")
-
-
-       
+        address_new = address + address_add + "/lita-test/administer.txt"
+        arr = IO.readlines(address_new)
+        puts arr
+      
       end
       # on :loaded, :greet
 
