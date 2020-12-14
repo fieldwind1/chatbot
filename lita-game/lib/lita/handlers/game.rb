@@ -65,7 +65,7 @@ module Lita
       	/.*/,
           :game_init,
           command: true,
-          help: { '一些其他设定' =>}
+          help: { '一些其他设定' =>''}
       	)
       def game_init(response)
       	arr = IO.readlines("data.txt")
@@ -81,7 +81,7 @@ module Lita
       	/[1-9]/,
           :game_run,
           command: true,
-          help: { '天地大同！！！！' =>}
+          help: { '天地大同！！！！' =>''}
       	)
       def game_run(response)
       	new_data = IO.readlines("data.txt")
@@ -111,7 +111,7 @@ module Lita
 					  when 3 then response.reply("游戏结束，双方平局")
 					end
 					File.delete("data.txt")
-					response.reply("游戏已经结束，如果想再来一局请从新进入"
+					response.reply("游戏已经结束，如果想再来一局请从新进入")
 				else
 		      	save_game(save_data)
 		      	end
