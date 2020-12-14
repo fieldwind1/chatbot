@@ -65,7 +65,7 @@ module Lita
       	/.*/,
           :game_init,
           command: true,
-          help: { '一些其他设定'}
+          help: { '一些其他设定' =>}
       	)
       def game_init(response)
       	arr = IO.readlines("data.txt")
@@ -81,7 +81,7 @@ module Lita
       	/[1-9]/,
           :game_run,
           command: true,
-          help: { '天地大同！！！！'}
+          help: { '天地大同！！！！' =>}
       	)
       def game_run(response)
       	new_data = IO.readlines("data.txt")
