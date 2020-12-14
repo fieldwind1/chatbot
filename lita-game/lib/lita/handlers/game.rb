@@ -68,9 +68,11 @@ module Lita
           help: { '一些其他设定' =>''}
       	)
       def game_init(response)
-      	if read_administer(7) == "1"
-      		response.reply("游戏正在运行中")
-      	end
+      	# if response.matches[0][0] != "game"
+	      	if read_administer(7) == "1"
+	      		response.reply("游戏正在运行中")
+	      	end
+	    # end
       end
       route(
       	/[1-9]/,
@@ -482,7 +484,7 @@ module Lita
 		        arr[q+2][0] = run
 		        File.delete("address_new")
 		        puts 1
-			    aFile = File.open("address_new", "a+:UTF-8")
+			    aFile = File.open("address_new", "w+:UTF-8")
 			    puts 2
 			    for i in 0..9
 			    	aFile.syswrite(arr[i])
