@@ -476,8 +476,9 @@ module Lita
 		         puts e
 		        
 		        }
-		        # address_new = address + address_add + "/lita-test/administer.txt"
+		        address_new = address + address_add + "/lita-test/administer.txt"
 		        arr = IO.readlines(address_new)
+		        puts arr
 		        arr[q+2][0] = run
 		        File.delete("address_new")
 		        puts 1
@@ -486,6 +487,8 @@ module Lita
 			    for i in 0..9
 			    	aFile.syswrite(arr[i])
 			    end
+			    puts ("write")
+
 			end
 
 			def read_administer(q)
@@ -502,6 +505,7 @@ module Lita
 		        end
 		        }
 		        puts address_add
+		        puts ("read")
 
 		        address_new = address + address_add + "/lita-test/administer.txt"
 		        arr = IO.readlines(address_new)
