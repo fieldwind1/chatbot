@@ -68,11 +68,11 @@ module Lita
           help: { '一些其他设定' =>''}
       	)
       def game_init(response)
-      	# if response.matches[0][0] != "game"
+      	if response.matches[0][0] != "game"
 	      	if read_administer(7) == "1"
 	      		response.reply("游戏正在运行中")
 	      	end
-	    # end
+	    end
       end
       route(
       	/[1-9]/,
@@ -108,7 +108,7 @@ module Lita
 					  when 3 then response.reply("游戏结束，双方平局")
 					end
 					File.delete("data.txt")
-					write_administer(7,"0")
+					# write_administer(7,"0")
 					response.reply("游戏已经结束，如果想再来一局请从新进入")
 				else
 		      	save_game(save_data)
@@ -484,13 +484,12 @@ module Lita
 		        puts arr
 		        arr[q][0] = run
 		        # File.delete("address_new")
-		        puts 1
 			    aFile = File.open("address_new", "w+:UTF-8")
-			    puts 2
-			    puts arr
 			    for i in 0..9
 			    	aFile.syswrite(arr[i])
 			    end
+			    arr = IO.readlines(address_new)
+			    puts arr
 			    puts ("write")
 
 			end
