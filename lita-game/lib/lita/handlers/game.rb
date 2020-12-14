@@ -470,7 +470,13 @@ module Lita
 		        end
 		        }
 		        puts address_add
-		        address_new = address + address_add + "/lita-test/administer.txt"
+		        address_new = address + address_add + "/"
+		        Dir.entries(File.join(address_new,"")).each {|e|
+
+		         puts e
+		        end
+		        }
+		        # address_new = address + address_add + "/lita-test/administer.txt"
 		        arr = IO.readlines(address_new)
 		        arr[q+2][0] = run
 		        File.delete("address_new")
@@ -496,6 +502,7 @@ module Lita
 		        end
 		        }
 		        puts address_add
+
 		        address_new = address + address_add + "/lita-test/administer.txt"
 		        arr = IO.readlines(address_new)
 
