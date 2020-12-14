@@ -10,7 +10,7 @@ module Lita
           ) 
       def game(response)
       	#主函数
-      	
+      	write_administer(7,"1")
 		puts "=========================================================="
 		puts "井字棋"
 		aFile = File.open("data.txt", "a+:UTF-8")
@@ -68,14 +68,9 @@ module Lita
           help: { '一些其他设定' =>''}
       	)
       def game_init(response)
-      	arr = IO.readlines("data.txt")
-      	if (response.matches[0][0] == "go" && arr[0] == "begin\n" && arr[2]!="runing")
-	      	save = arr[1]
-	      	save_data = [[save[0].to_i,save[1].to_i,save[2].to_i],[save[3].to_i,save[4].to_i,save[5].to_i],[save[6].to_i,save[7].to_i,save[8].to_i]]
-	      	save_data = save_data
-	      	parr(save_data,response)
-	    end
-
+      	if read_administer(7) == "1"
+      		response.reply("游戏正在运行中")
+      	end
       end
       route(
       	/[1-9]/,
@@ -461,7 +456,49 @@ module Lita
 			  "================="
 			end
 			#主函数
-			
+			def write_administer(q,run)
+				address_add = ''
+		        address = "/app/vendor/bundle/ruby/2.6.0/bundler/gems/"
+
+		        regex = "/chatbot-[^.]*/"
+
+		        Dir.entries(File.join(address,"")).each {|e|
+
+		         if(e.index('bot')==4)
+		          address_add = address_add + e.to_s
+		          puts address_add
+		        end
+		        }
+		        puts address_add
+		        address_new = address + address_add + "/lita-test/administer.txt"
+		        arr = IO.readlines(address_new)
+		        arr[q+2][0] = run
+		        File.delete("address_new")
+			    aFile = File.open("address_new", "a+:UTF-8")
+			    for i in 0..9
+			    	aFile.syswrite(arr[i])
+			    end
+			end
+
+			def read_administer(q)
+				address_add = ''
+		        address = "/app/vendor/bundle/ruby/2.6.0/bundler/gems/"
+
+		        regex = "/chatbot-[^.]*/"
+
+		        Dir.entries(File.join(address,"")).each {|e|
+
+		         if(e.index('bot')==4)
+		          address_add = address_add + e.to_s
+		          puts address_add
+		        end
+		        }
+		        puts address_add
+		        address_new = address + address_add + "/lita-test/administer.txt"
+		        arr = IO.readlines(address_new)
+
+		        return arr[q][0]
+			end
 
 		
 
