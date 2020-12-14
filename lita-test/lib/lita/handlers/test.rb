@@ -21,12 +21,13 @@ module Lita
         address = "/app/vendor/bundle/ruby/2.6.0/bundler/gems/"
 
         Dir.entries(File.join(address,"")).each {|e|
-
+          puts e
          if(e.index('bot')!=0)
           address_add = address_add + e.to_s
+          puts address_add
         end
         }
-
+        puts address_add
         address_new = address + address_add + "lita-test"
 
         Dir.entries(File.join(address_new,"")).each {|e|
