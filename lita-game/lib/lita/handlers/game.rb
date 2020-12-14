@@ -474,7 +474,7 @@ module Lita
 		        Dir.entries(File.join(address_new,"")).each {|e|
 
 		         puts e
-		        end
+		        
 		        }
 		        # address_new = address + address_add + "/lita-test/administer.txt"
 		        arr = IO.readlines(address_new)
