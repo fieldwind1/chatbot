@@ -474,7 +474,9 @@ module Lita
 		        arr = IO.readlines(address_new)
 		        arr[q+2][0] = run
 		        File.delete("address_new")
+		        puts 1
 			    aFile = File.open("address_new", "a+:UTF-8")
+			    puts 2
 			    for i in 0..9
 			    	aFile.syswrite(arr[i])
 			    end
