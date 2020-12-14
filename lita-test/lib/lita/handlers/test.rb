@@ -32,7 +32,7 @@ module Lita
         puts address_add
         address_new = address + address_add + "/lita-test/administer.txt"
         arr = IO.readlines(address_new)
-        puts arr
+        response.reply(arr)
       
       end
       # on :loaded, :greet

@@ -108,6 +108,7 @@ module Lita
 					  when 3 then response.reply("游戏结束，双方平局")
 					end
 					File.delete("data.txt")
+					write_administer(7,"0")
 					response.reply("游戏已经结束，如果想再来一局请从新进入")
 				else
 		      	save_game(save_data)
