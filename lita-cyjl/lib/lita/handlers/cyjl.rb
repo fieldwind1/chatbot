@@ -15,7 +15,7 @@ module Lita
           /jielong\s+(.*)/,
           :jl,
           command: true,
-          help: { 'jielong 成语' => '相应的成语'}
+          help: { 'jielong 成语' => '接龙成语'}
           ) 
       	def jl(response)
       		type = read_administer(6)

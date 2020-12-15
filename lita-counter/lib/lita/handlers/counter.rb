@@ -9,10 +9,10 @@ module Lita
       	# 	help: { 'double NNN' => 'prints N+N'}
       	# 	)
         route(
-          /count\s+(.+)/,
+          /count\s+(\d+\W+\d)/,
           :respond_with_count,
           command: true,
-          help: { 'double N' => 'prints N+N'}
+          help: { 'count 算式' => '答案'}
           ) 
       	def respond_with_count(response)
           type = read_administer(5)
@@ -58,8 +58,9 @@ module Lita
           else
             response.reply("该功能已经被关闭，请进入管理员模式打开该功能")
           end
+      	end
 
-          def read_administer(q)
+        def read_administer(q)
             address_add = ''
             address = "/app/vendor/bundle/ruby/2.6.0/bundler/gems/"
 
@@ -79,12 +80,6 @@ module Lita
             return arr[q]
           end
 
-
-      	end
-
-      	# def double_number(n)
-      	# 	n+n+n
-      	# end
       Lita.register_handler(self)
     end
   end

@@ -2,7 +2,7 @@ module Lita
   module Handlers
     class Calender < Handler
       # insert handler code here
-      route(/^calender\s+(.+)/, :echo,command: true, help: { "calender 1997-12" => "Echoes back TEXT." })
+      route(/^calender\s+(.+)/, :echo,command: true, help: { "calender 某年-某月" => "该月日历" })
 
       def echo(response)
       	type = read_administer(3)

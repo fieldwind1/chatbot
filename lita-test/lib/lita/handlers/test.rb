@@ -8,7 +8,7 @@ module Lita
           /administer login\s+(.+)/,
           :login,
           command: true,
-          help: { 'test' => 'prints N+N'}
+          help: { 'administer login 用户名' => '以该用户名登录管理员模式'}
           ) 
 
       def login(response)
@@ -33,7 +33,7 @@ module Lita
           /(.+)/,
           :password,
           command: true,
-          help: { 'test' => 'prints N+N'}
+          help: { '密码' => '在输入登录用户名后，输入密码之后方可登录管理员模式'}
           ) 
 
       def password(response)
@@ -63,7 +63,9 @@ module Lita
       /^check/,
       :check,
       command: true,
-      help: { 'test' => 'prints N+N'}
+      help: { 'check' => '在管理员模式下检视聊天机器人系统
+        "0-2"-正在运行
+        "9"-已经被关闭'}
       ) 
 
       def check(response)
@@ -101,14 +103,15 @@ module Lita
       /open\s+(\d)/,
       :open,
       command: true,
-      help: { 'test' => 'prints N+N'}
+      help: { 'open x' => '在管理员模式下开启功能x'}
       ) 
 
       def open(response)
 
         type = read_administer(0)
-        if type[0] == "2"
-          data = response.matches[0][0]
+        data = response.matches[0][0]
+        if type[0] == "2" && (data.to_i != 0 || data.to_i != 1)
+          
           response.reply(data) 
           write_administer(data.to_i,"0")
         else
@@ -120,14 +123,15 @@ module Lita
       /close\s+(\d)/,
       :close,
       command: true,
-      help: { 'test' => 'prints N+N'}
+      help: { 'close x' => '在管理员模式下关闭功能x'}
       ) 
 
       def close(response)
 
         type = read_administer(0)
-        if type[0] == "2"
-          data = response.matches[0][0]
+        data = response.matches[0][0]
+        if type[0] == "2" && (data.to_i != 0 || data.to_i != 1)
+          
           response.reply(data) 
           write_administer(data.to_i,"9")
         else

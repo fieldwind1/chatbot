@@ -8,7 +8,7 @@ module Lita
           /photo\s+(.*)/,
           :photo,
           command: true,
-          help: { 'photo + anything' => "the photo of this"}
+          help: { 'photo 某物' => "关于该事物的图片"}
           ) 
 
       def photo(response)
