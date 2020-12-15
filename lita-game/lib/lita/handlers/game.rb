@@ -3,16 +3,18 @@ module Lita
     class Game < Handler
       # insert handler code here
       route(
-          /game/,
-          :game,
+          /game_begin/,
+          :game_begin,
           command: true,
           help: { 'game' => '玩一个简单的小游戏'}
           ) 
-      def game(response)
+      def game_begin(response)
       	#主函数
       	write_administer(7,"1")
 		puts "=========================================================="
 		puts "井字棋"
+		aFile = File.open("data.txt", "a+:UTF-8")
+		File.delete("data.txt")
 		aFile = File.open("data.txt", "a+:UTF-8")
 		aFile.syswrite("begin\n")
 		aFile.syswrite("0")
@@ -29,14 +31,14 @@ module Lita
 	    save = arr[1]
   		save_data = [[save[0].to_i,save[1].to_i,save[2].to_i],[save[3].to_i,save[4].to_i,save[5].to_i],[save[6].to_i,save[7].to_i,save[8].to_i]]
 		if rand(0..100).to_i<50
-		    puts "================="
-		    puts "我方先行"
-		    puts "================="
+		    response.reply("=================")
+		    response.reply("我方先行")
+		    response.reply("=================")
 		    parr(save_data,response)
 		else
-		    puts "================="
-		    puts "CPU先行"
-		    puts "================="
+		    response.reply("=================")
+		    response.reply("CPU先行")
+		    response.reply("=================")
 		    
 		    save_data=aip(save_data)
 		    win=winp(save_data)
@@ -68,8 +70,27 @@ module Lita
           help: { '一些其他设定' =>''}
       	)
       def game_init(response)
-      	if response.matches[0][0] != "game"
-	      	if read_administer(7) == "1"
+      	new_data = IO.readlines("data.txt")
+      	if response.matches[0][0] != "game_begin"
+      		if response.matches[0][0] == "quit" && new_data[0] == "begin\n"     			
+      			File.delete("data.txt")
+			    aFile = File.open("data.txt", "a+:UTF-8")
+			    aFile.syswrite("stop\n")
+			    aFile.syswrite(new_data[1])
+			    # aFile.syswrite("\n")
+			    aFile.syswrite(new_data[2])
+			    write_administer(7,"0")
+			    puts "游戏暂停，数据已保存"
+			elsif response.matches[0][0] == "continue" && new_data[0] == "stop\n"
+				File.delete("data.txt")
+			    aFile = File.open("data.txt", "a+:UTF-8")
+			    aFile.syswrite("begin\n")
+			    aFile.syswrite(new_data[1])
+			    # aFile.syswrite("\n")
+			    aFile.syswrite(new_data[2])
+			    write_administer(7,"1")
+			    puts "游戏继续"
+	      	elsif read_administer(7) == "1"
 	      		response.reply("游戏正在运行中")
 	      	end
 	    end
@@ -108,7 +129,8 @@ module Lita
 					  when 3 then response.reply("游戏结束，双方平局")
 					end
 					File.delete("data.txt")
-					# write_administer(7,"0")
+					aFile = File.open("data.txt", "a+:UTF-8")
+					write_administer(7,"0")
 					response.reply("游戏已经结束，如果想再来一局请从新进入")
 				else
 		      	save_game(save_data)
@@ -116,6 +138,8 @@ module Lita
 		    else
 		    	response.reply("这个位置已经有子了，请换个位置")
 		    end
+		else
+			puts "已退出"
 		end
 
 
@@ -128,7 +152,6 @@ module Lita
 			    		game_data = game_data + q[i][j].to_s
 			    	end
 			    end
-			    game_data
 			    File.delete("data.txt")
 			    aFile = File.open("data.txt", "a+:UTF-8")
 			    aFile.syswrite("begin\n")
