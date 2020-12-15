@@ -87,45 +87,47 @@ module Lita
           help: { '天地大同！！！！' =>''}
       	)
       def game_run(response)
-      	
-      	if (new_data[0] == "begin\n")
-      		new_data = IO.readlines("data.txt")
-	      	win=0
+      	if read_administer(7) == "1"
+	      	new_data = IO.readlines("data.txt")
+	      	if (new_data[0] == "begin\n")
 
-	      	new_place = response.matches[0][0].to_i
-	      	puts new_data[1][new_place-1]
-	      	if new_data[1][new_place-1] == "0"
-		      	new_data[1][new_place-1] = "1"
-		      	save = new_data[1]
-			    save_data = [[save[0].to_i,save[1].to_i,save[2].to_i],[save[3].to_i,save[4].to_i,save[5].to_i],[save[6].to_i,save[7].to_i,save[8].to_i]]
-			    save_data = save_data
-			      	
-				win = winp(save_data)
+		      	win=0
 
-				if win==0
+		      	new_place = response.matches[0][0].to_i
+		      	puts new_data[1][new_place-1]
+		      	if new_data[1][new_place-1] == "0"
+			      	new_data[1][new_place-1] = "1"
+			      	save = new_data[1]
+				    save_data = [[save[0].to_i,save[1].to_i,save[2].to_i],[save[3].to_i,save[4].to_i,save[5].to_i],[save[6].to_i,save[7].to_i,save[8].to_i]]
+				    save_data = save_data
+				      	
+					win = winp(save_data)
 
-					save_data = aip(save_data)
-		      		win = winp(save_data)
-		      	end
-		      	parr(save_data, response)
-		      	if win!= 0
-			      	case win
-					  when 1 then response.reply("游戏结束，我方胜利")
-					  when 2 then response.reply("游戏结束，CPU胜利")
-					  when 3 then response.reply("游戏结束，双方平局")
-					end
-					File.delete("data.txt")
-					aFile = File.open("data.txt", "a+:UTF-8")
-					write_administer(7,"0")
-					response.reply("游戏已经结束，如果想再来一局请从新进入")
-				else
-		      	save_game(save_data)
-		      	end
-		    else
-		    	response.reply("这个位置已经有子了，请换个位置")
-		    end
-		else
-			puts "已退出"
+					if win==0
+
+						save_data = aip(save_data)
+			      		win = winp(save_data)
+			      	end
+			      	parr(save_data, response)
+			      	if win!= 0
+				      	case win
+						  when 1 then response.reply("游戏结束，我方胜利")
+						  when 2 then response.reply("游戏结束，CPU胜利")
+						  when 3 then response.reply("游戏结束，双方平局")
+						end
+						File.delete("data.txt")
+						aFile = File.open("data.txt", "a+:UTF-8")
+						write_administer(7,"0")
+						response.reply("游戏已经结束，如果想再来一局请从新进入")
+					else
+			      	save_game(save_data)
+			      	end
+			    else
+			    	response.reply("这个位置已经有子了，请换个位置")
+			    end
+			else
+				puts "已退出"
+			end
 		end
 
 

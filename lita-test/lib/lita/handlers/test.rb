@@ -19,7 +19,9 @@ module Lita
         print data
         # 如果二者相等
         if data == administer[1,administer.length-3]
-          write_administer(0,"1")
+          after(1) {  write_administer(0,"1")
+          }
+         
           response.reply("请继续输入密码")
         else
           response.reply("管理员用户名错误")
@@ -65,7 +67,9 @@ module Lita
       ) 
 
       def check(response)
-             address_add = ''
+        type = read_administer(0)
+        if type[0] == "2"
+            address_add = ''
             address = "/app/vendor/bundle/ruby/2.6.0/bundler/gems/"
 
             regex = "/chatbot-[^.]*/"
@@ -87,33 +91,41 @@ module Lita
             address_new = address + address_add + "/lita-test/administer.txt"
             arr = IO.readlines(address_new)
             response.reply(arr) 
+        end
       end
 
         route(
-      /open\s+(.+)/,
+      /open\s+(\d)/,
       :open,
       command: true,
       help: { 'test' => 'prints N+N'}
       ) 
 
       def open(response)
-              
+
+        type = read_administer(0)
+        if type[0] == "2"
+          data = response.matches[0][0]
+          response.reply(data) 
+          write_administer(data.to_i,"0")
+        end
       end
 
      route(
-      /close\s+(.+)/,
+      /close\s+(\d)/,
       :close,
       command: true,
       help: { 'test' => 'prints N+N'}
       ) 
 
       def close(response)
-        # aFile = File.new("data.txt", "a+:UTF-8")
-       #  aFile.syswrite("ABCDEF")
-       #  arr = IO.readlines("data.txt")
-       #  puts arr
-        # response.reply(response.matches[0][0])
 
+        type = read_administer(0)
+        if type[0] == "2"
+          data = response.matches[0][0]
+          response.reply(data) 
+          write_administer(data.to_i,"9")
+        end
       
       end
 
