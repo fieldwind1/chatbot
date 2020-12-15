@@ -9,34 +9,39 @@ module Lita
           help: { 'game' => '玩一个简单的小游戏'}
           ) 
       def game_begin(response)
-      	#主函数
-      	write_administer(7,"1")
-		puts "=========================================================="
-		puts "井字棋"
-		aFile = File.open("data.txt", "a+:UTF-8")
-		File.delete("data.txt")
-		aFile = File.open("data.txt", "a+:UTF-8")
-		aFile.syswrite("begin\n")
-		aFile.syswrite("00000000")
-		response.reply("已经进入游戏进程")
-		arr = IO.readlines("data.txt")
-	    save = arr[1]
-  		save_data = [[save[0].to_i,save[1].to_i,save[2].to_i],[save[3].to_i,save[4].to_i,save[5].to_i],[save[6].to_i,save[7].to_i,save[8].to_i]]
-		if rand(0..100).to_i<50
-		    response.reply("=================")
-		    response.reply("我方先行")
-		    response.reply("=================")
-		    parr(save_data,response)
+      	type = read_administer(7)
+        if type[0] != "9"
+	      	#主函数
+	      	write_administer(7,"1")
+			puts "=========================================================="
+			puts "井字棋"
+			aFile = File.open("data.txt", "a+:UTF-8")
+			File.delete("data.txt")
+			aFile = File.open("data.txt", "a+:UTF-8")
+			aFile.syswrite("begin\n")
+			aFile.syswrite("00000000")
+			response.reply("已经进入游戏进程")
+			arr = IO.readlines("data.txt")
+		    save = arr[1]
+	  		save_data = [[save[0].to_i,save[1].to_i,save[2].to_i],[save[3].to_i,save[4].to_i,save[5].to_i],[save[6].to_i,save[7].to_i,save[8].to_i]]
+			if rand(0..100).to_i<50
+			    response.reply("=================")
+			    response.reply("我方先行")
+			    response.reply("=================")
+			    parr(save_data,response)
+			else
+			    response.reply("=================")
+			    response.reply("CPU先行")
+			    response.reply("=================")
+			    
+			    save_data=aip(save_data)
+			    win=winp(save_data)
+			    parr(save_data,response)
+			    save_game(save_data)
+			end
 		else
-		    response.reply("=================")
-		    response.reply("CPU先行")
-		    response.reply("=================")
-		    
-		    save_data=aip(save_data)
-		    win=winp(save_data)
-		    parr(save_data,response)
-		    save_game(save_data)
-		end
+	        response.reply("该功能已经被关闭，请进入管理员模式打开该功能")
+	      end
 
       end
 
@@ -47,7 +52,7 @@ module Lita
           help: { '一些其他设定' =>''}
       	)
       def game_init(response)
-      	if read_administer(7) == "1" || read_administer(7) == "2"
+      	if read_administer(7)[0] == "1" || read_administer(7)[0] == "2"
 	      	new_data = IO.readlines("data.txt")
 	      	if response.matches[0][0] != "game_begin"
 	      		if response.matches[0][0] == "quit" && new_data[0] == "begin\n"     			
@@ -72,7 +77,7 @@ module Lita
 			  		save_data = [[save[0].to_i,save[1].to_i,save[2].to_i],[save[3].to_i,save[4].to_i,save[5].to_i],[save[6].to_i,save[7].to_i,save[8].to_i]]
 			  		parr(save_data,response)
 				    response.reply("游戏继续")
-		      	elsif read_administer(7) == "1"
+		      	elsif read_administer(7)[0] == "1"
 		      		response.reply("游戏正在运行中")
 		      		puts new_data
 		      		puts response.matches[0][0]
@@ -87,7 +92,7 @@ module Lita
           help: { '天地大同！！！！' =>''}
       	)
       def game_run(response)
-      	if read_administer(7) == "1"
+      	if read_administer(7)[0] == "1"
 	      	new_data = IO.readlines("data.txt")
 	      	if (new_data[0] == "begin\n")
 
@@ -524,7 +529,7 @@ module Lita
 		        address_new = address + address_add + "/lita-test/administer.txt"
 		        arr = IO.readlines(address_new)
 
-		        return arr[q][0]
+		        return arr[q]
 			end
 
 		

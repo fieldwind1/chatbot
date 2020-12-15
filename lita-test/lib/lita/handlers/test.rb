@@ -98,7 +98,7 @@ module Lita
       end
 
         route(
-      /open\s+([2-9])&/,
+      /open\s+(\d)/,
       :open,
       command: true,
       help: { 'test' => 'prints N+N'}
