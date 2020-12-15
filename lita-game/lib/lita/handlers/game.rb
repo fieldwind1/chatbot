@@ -92,6 +92,8 @@ module Lita
 			    puts "游戏继续"
 	      	elsif read_administer(7) == "1"
 	      		response.reply("游戏正在运行中")
+	      		puts new_data
+	      		puts response.matches[0][0]
 	      	end
 	    end
       end
