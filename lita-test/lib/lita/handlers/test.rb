@@ -17,7 +17,9 @@ module Lita
         # 录入已登录用户名
         administer = read_administer(0)
         print data
-        print administer[1,administer.length-2]
+        response.reply(data)
+        response.reply(administer[1,administer.length-2])
+        response.reply(administer[1,administer.length-3])
         # 如果二者相等
         if data == administer[1,administer.length-2]
           write_administer(0,"1")
@@ -129,10 +131,10 @@ module Lita
 
              if(e.index('bot')==4)
               address_add = address_add + e.to_s
-              puts address_add
+
             end
             }
-            puts address_add
+
             address_new = address + address_add + "/lita-test/"
             Dir.entries(File.join(address_new,"")).each {|e|
 
@@ -164,10 +166,10 @@ module Lita
 
              if(e.index('bot')==4)
               address_add = address_add + e.to_s
-              puts address_add
+
             end
             }
-            puts address_add
+
             puts ("read")
 
             address_new = address + address_add + "/lita-test/administer.txt"
