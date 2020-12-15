@@ -91,7 +91,10 @@ module Lita
             address_new = address + address_add + "/lita-test/administer.txt"
             arr = IO.readlines(address_new)
             response.reply(arr) 
+        else
+          response.reply("该命令仅在管理员模式下才能使用，请登录并开启管理员模式")
         end
+
       end
 
         route(
@@ -108,6 +111,8 @@ module Lita
           data = response.matches[0][0]
           response.reply(data) 
           write_administer(data.to_i,"0")
+        else
+          response.reply("该命令仅在管理员模式下才能使用，请登录并开启管理员模式")
         end
       end
 
@@ -125,6 +130,8 @@ module Lita
           data = response.matches[0][0]
           response.reply(data) 
           write_administer(data.to_i,"9")
+        else
+          response.reply("该命令仅在管理员模式下才能使用，请登录并开启管理员模式")
         end
       
       end

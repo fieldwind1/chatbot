@@ -75,8 +75,6 @@ module Lita
 			# response.reply(counter)
 		end
 
-
-
 		response.reply("当前天气情况：")
 
 		response.reply(date[counter])
