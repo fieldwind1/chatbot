@@ -87,8 +87,9 @@ module Lita
           help: { '天地大同！！！！' =>''}
       	)
       def game_run(response)
-      	new_data = IO.readlines("data.txt")
+      	
       	if (new_data[0] == "begin\n")
+      		new_data = IO.readlines("data.txt")
 	      	win=0
 
 	      	new_place = response.matches[0][0].to_i

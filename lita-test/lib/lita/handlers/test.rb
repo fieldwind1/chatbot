@@ -40,10 +40,10 @@ module Lita
         # 录入已登录密码
         administer = read_administer(1)
         type = read_administer(0)
-        puts administer[0,administer.length-1]
+        puts administer[0,administer.length-2]
         # 如果二者相等同时之前用户名正确
         if type[0] == "1"
-          if data == administer[0,administer.length-1] 
+          if data == administer[0,administer.length-2] 
             write_administer(0,"2")
             response.reply("密码正确，激活管理员模式一分钟")
             after(60) { |timer| 
