@@ -42,15 +42,17 @@ module Lita
         type = read_administer(0)
         puts administer[0,administer.length-1]
         # 如果二者相等同时之前用户名正确
-        if data == administer[0,administer.length-1] && type[0] == "1"
-          write_administer(0,"2")
-          response.reply("密码正确，激活管理员模式一分钟")
-          after(60) { |timer| 
-          response.reply("管理员模式已经关闭") 
-          write_administer(0,"0")
-        }
-        else
-          response.reply("输入密码错误")
+        if type[0] == "1"
+          if data == administer[0,administer.length-1] 
+            write_administer(0,"2")
+            response.reply("密码正确，激活管理员模式一分钟")
+            after(60) { |timer| 
+            response.reply("管理员模式已经关闭") 
+            write_administer(0,"0")
+          }
+          else
+            response.reply("输入密码错误")
+          end
         end
 
       end
@@ -172,21 +174,7 @@ module Lita
 
             return arr[q]
       end
-      on :loaded, :greet
 
-      def greet(payload)
-        target = Source.new(room: payload[:room])
-        robot.send_message(target, "
-                   _ooOoo_
-                  o8888888o
-                  88' . '88
-                  (| -_- |)
-                  O|  =  |O
-               ____|`---'|____
-
-           佛祖保佑      永无BUG
-          ")
-      end
       Lita.register_handler(self)
     end
   end
