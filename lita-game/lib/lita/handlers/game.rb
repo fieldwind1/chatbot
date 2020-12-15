@@ -47,36 +47,38 @@ module Lita
           help: { '一些其他设定' =>''}
       	)
       def game_init(response)
-      	new_data = IO.readlines("data.txt")
-      	if response.matches[0][0] != "game_begin"
-      		if response.matches[0][0] == "quit" && new_data[0] == "begin\n"     			
-      			File.delete("data.txt")
-			    aFile = File.open("data.txt", "a+:UTF-8")
-			    aFile.syswrite("stop\n")
-			    aFile.syswrite(new_data[1])
-			    # aFile.syswrite("\n")
-			    aFile.syswrite(new_data[2])
-			    write_administer(7,"0")
-			    response.reply("游戏暂停，数据已保存")
-			elsif response.matches[0][0] == "continue" && new_data[0] == "stop\n"
-				File.delete("data.txt")
-			    aFile = File.open("data.txt", "a+:UTF-8")
-			    aFile.syswrite("begin\n")
-			    aFile.syswrite(new_data[1])
-			    # aFile.syswrite("\n")
-			    aFile.syswrite(new_data[2])
-			    write_administer(7,"1")
-			    arr = IO.readlines("data.txt")
-			    save = arr[1]
-		  		save_data = [[save[0].to_i,save[1].to_i,save[2].to_i],[save[3].to_i,save[4].to_i,save[5].to_i],[save[6].to_i,save[7].to_i,save[8].to_i]]
-		  		parr(save_data,response)
-			    response.reply("游戏继续")
-	      	elsif read_administer(7) == "1"
-	      		response.reply("游戏正在运行中")
-	      		puts new_data
-	      		puts response.matches[0][0]
-	      	end
-	    end
+      	if read_administer(7) == "1" || read_administer(7) == "2"
+	      	new_data = IO.readlines("data.txt")
+	      	if response.matches[0][0] != "game_begin"
+	      		if response.matches[0][0] == "quit" && new_data[0] == "begin\n"     			
+	      			File.delete("data.txt")
+				    aFile = File.open("data.txt", "a+:UTF-8")
+				    aFile.syswrite("stop\n")
+				    aFile.syswrite(new_data[1])
+				    # aFile.syswrite("\n")
+				    aFile.syswrite(new_data[2])
+				    write_administer(7,"2")
+				    response.reply("游戏暂停，数据已保存")
+				elsif response.matches[0][0] == "continue" && new_data[0] == "stop\n"
+					File.delete("data.txt")
+				    aFile = File.open("data.txt", "a+:UTF-8")
+				    aFile.syswrite("begin\n")
+				    aFile.syswrite(new_data[1])
+				    # aFile.syswrite("\n")
+				    aFile.syswrite(new_data[2])
+				    write_administer(7,"1")
+				    arr = IO.readlines("data.txt")
+				    save = arr[1]
+			  		save_data = [[save[0].to_i,save[1].to_i,save[2].to_i],[save[3].to_i,save[4].to_i,save[5].to_i],[save[6].to_i,save[7].to_i,save[8].to_i]]
+			  		parr(save_data,response)
+				    response.reply("游戏继续")
+		      	elsif read_administer(7) == "1"
+		      		response.reply("游戏正在运行中")
+		      		puts new_data
+		      		puts response.matches[0][0]
+		      	end
+		    end
+		end
       end
       route(
       	/[1-9]/,
