@@ -16,6 +16,8 @@ module Lita
       	def answer(response)
           type = read_administer(2)
           if type[0] == "0"
+            response.reply(type)
+            response.reply(type[0])
       		  # 读取数据
         		data=response.matches[0][0]
         		# 新建mechanize变量
