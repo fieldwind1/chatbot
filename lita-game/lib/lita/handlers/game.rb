@@ -64,7 +64,7 @@ module Lita
       end
 
       route(
-      	/.*/,
+      	/(.+)/,
           :game_init,
           command: true,
           help: { '一些其他设定' =>''}
