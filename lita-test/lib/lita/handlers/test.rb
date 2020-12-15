@@ -17,11 +17,8 @@ module Lita
         # 录入已登录用户名
         administer = read_administer(0)
         print data
-        response.reply(data)
-        response.reply(administer[1,administer.length-2])
-        response.reply(administer[1,administer.length-3])
         # 如果二者相等
-        if data == administer[1,administer.length-2]
+        if data == administer[1,administer.length-3]
           write_administer(0,"1")
           response.reply("请继续输入密码")
         else
