@@ -17,15 +17,7 @@ module Lita
 		File.delete("data.txt")
 		aFile = File.open("data.txt", "a+:UTF-8")
 		aFile.syswrite("begin\n")
-		aFile.syswrite("0")
-		aFile.syswrite("0")
-		aFile.syswrite("0")
-		aFile.syswrite("0")
-		aFile.syswrite("0")
-		aFile.syswrite("0")
-		aFile.syswrite("0")
-		aFile.syswrite("0")
-		aFile.syswrite("0")
+		aFile.syswrite("00000000")
 		response.reply("已经进入游戏进程")
 		arr = IO.readlines("data.txt")
 	    save = arr[1]
@@ -45,21 +37,6 @@ module Lita
 		    parr(save_data,response)
 		    save_game(save_data)
 		end
-		address_add = ''
-        address = "/app/vendor/bundle/ruby/2.6.0/bundler/gems/"
-
-        regex = "/chatbot-[^.]*/"
-
-        Dir.entries(File.join(address,"")).each {|e|
-
-         if(e.index('bot')==4)
-          address_add = address_add + e.to_s
-          puts address_add
-        end
-        }
-        puts address_add
-        address_new = address + address_add + "/lita-test/administer.txt"
-        list = IO.readlines(address_new)
 
       end
 
@@ -80,7 +57,7 @@ module Lita
 			    # aFile.syswrite("\n")
 			    aFile.syswrite(new_data[2])
 			    write_administer(7,"0")
-			    puts "游戏暂停，数据已保存"
+			    response.reply("游戏暂停，数据已保存")
 			elsif response.matches[0][0] == "continue" && new_data[0] == "stop\n"
 				File.delete("data.txt")
 			    aFile = File.open("data.txt", "a+:UTF-8")
@@ -89,7 +66,11 @@ module Lita
 			    # aFile.syswrite("\n")
 			    aFile.syswrite(new_data[2])
 			    write_administer(7,"1")
-			    puts "游戏继续"
+			    arr = IO.readlines("data.txt")
+			    save = arr[1]
+		  		save_data = [[save[0].to_i,save[1].to_i,save[2].to_i],[save[3].to_i,save[4].to_i,save[5].to_i],[save[6].to_i,save[7].to_i,save[8].to_i]]
+		  		parr(save_data,response)
+			    response.reply("游戏继续")
 	      	elsif read_administer(7) == "1"
 	      		response.reply("游戏正在运行中")
 	      		puts new_data
