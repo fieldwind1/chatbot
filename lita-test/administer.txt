@@ -8,3 +8,4 @@
 0-game7
 0-photo8
 0-weather9
+0-joke10
