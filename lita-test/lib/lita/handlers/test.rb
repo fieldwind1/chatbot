@@ -20,7 +20,7 @@ module Lita
         # 如果二者相等
         if data == administer[1,administer.length-1]
           write_administer(0,"1")
-          response.reply("请继续输入密码"）
+          response.reply("请继续输入密码")
         else
           response.reply("管理员用户名错误")
         end
