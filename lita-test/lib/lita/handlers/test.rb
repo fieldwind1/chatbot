@@ -112,7 +112,7 @@ module Lita
         data = response.matches[0][0]
         if type[0] == "2" && (data.to_i != 0 || data.to_i != 1)
           
-          response.reply(data) 
+          response.reply("功能#{data.to_i}已经被打开") 
           write_administer(data.to_i,"0")
         else
           response.reply("该命令仅在管理员模式下才能使用，请登录并开启管理员模式")
@@ -132,7 +132,7 @@ module Lita
         data = response.matches[0][0]
         if type[0] == "2" && (data.to_i != 0 || data.to_i != 1)
           
-          response.reply(data) 
+          response.reply("功能#{data.to_i}已经被关闭") 
           write_administer(data.to_i,"9")
         else
           response.reply("该命令仅在管理员模式下才能使用，请登录并开启管理员模式")

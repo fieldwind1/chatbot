@@ -27,7 +27,7 @@ module Lita
 	            }
 
 	            address_new = address + address_add + "/lita-joke/joke.txt"
-	            arr = IO.readlines("address_new")
+	            arr = IO.readlines(address_new)
 	            # arr = IO.readlines("joke.txt")
 	            response.reply(arr[rand(arr.length)])
             else
