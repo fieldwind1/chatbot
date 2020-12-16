@@ -110,7 +110,7 @@ module Lita
 
         type = read_administer(0)
         data = response.matches[0][0]
-        if type[0] == "2" && (data.to_i != 0 || data.to_i != 1)
+        if type[0] == "2" && (data.to_i >= 2 || data.to_i <= 9)
           
           response.reply("功能#{data.to_i}已经被打开") 
           write_administer(data.to_i,"0")
@@ -130,7 +130,7 @@ module Lita
 
         type = read_administer(0)
         data = response.matches[0][0]
-        if type[0] == "2" && (data.to_i != 0 || data.to_i != 1)
+        if type[0] == "2" && (data.to_i >= 2 || data.to_i <= 9)
           
           response.reply("功能#{data.to_i}已经被关闭") 
           write_administer(data.to_i,"9")

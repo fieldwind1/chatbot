@@ -1,11 +1,10 @@
 0fieldwind
 168168168
-0-answer2
-0-calender3
-0-clock4
-0-counter5
-0-cyjl6
-0-game7
-0-photo8
-0-weather9
-0-joke10
+0-answer功能2
+0-calender功能3
+0-clock功能4
+0-counter功能5
+0-cyjl and joke功能6
+0-game功能7
+0-photo功能8
+0-weather功能9

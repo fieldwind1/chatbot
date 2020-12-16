@@ -11,7 +11,7 @@ module Lita
           ) 
 
       def joke(response)
-      		type = read_administer(10)
+      		type = read_administer(6)
           	if type[0] == "0"
 	      		address_add = ''
 	            address = "/app/vendor/bundle/ruby/2.6.0/bundler/gems/"
