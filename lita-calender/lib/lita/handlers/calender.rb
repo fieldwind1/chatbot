@@ -5,8 +5,8 @@ module Lita
       route(/^calender\s+(.+)/, :echo,command: true, help: { "calender 某年-某月" => "该月日历" })
 
       def echo(response)
-      	type = read_administer(3)
-        if type[0] == "0"
+      	# type = read_administer(3)
+       #  if type[0] == "0"
 	        time = response.matches[0][0]
 
 			year=time.split("-")[0]
@@ -70,6 +70,7 @@ module Lita
 			if final_day>7
 				final_day=final_day-7
 			end
+			final_day=final_day-1
 
 			month_type=month_judge(month,year)
 			
@@ -103,9 +104,9 @@ module Lita
 			response.reply(em[3])
 			response.reply(em[4])
 			response.reply(em[5])
-		else
-			response.reply("该功能已经被关闭，请进入管理员模式打开该功能")
-		end
+		# else
+		# 	response.reply("该功能已经被关闭，请进入管理员模式打开该功能")
+		# end
       end
 
       def read_administer(q)
