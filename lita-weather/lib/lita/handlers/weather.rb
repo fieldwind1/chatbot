@@ -70,10 +70,10 @@ module Lita
 
 			counter=0
 			time = Time.new
-			hour = time.hour
+			hour = time.hour+8
 			a=date[0][10,2]
 
-			response.reply(hour.to_s)
+			# response.reply(hour.to_s)
 
 			while a.to_i<hour
 				counter=counter+1

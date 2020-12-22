@@ -16,7 +16,7 @@ module Lita
         if type[0] == "0"
 
           	message=response.matches[0][0]
-          	response.reply(response.matches[0][0])
+          	# response.reply(response.matches[0][0])
 
         		newone = "https://image.baidu.com/search/flip?tn=baiduimage&ie=utf-8&word="+message+"&pn=0"
         		document=HTTP.get(newone).body
