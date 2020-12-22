@@ -22,8 +22,10 @@ module Lita
 			baidu_form = page.form('f')
 			if(message.empty?)
 				baidu_form.wd = '北京'
+				mes = '北京'
 			else
 				baidu_form.wd = message
+				mes = message
 			end
 			baidu_form.wd = baidu_form.wd+"中国天气预报"
 			page = agent.submit(baidu_form)
@@ -48,7 +50,7 @@ module Lita
 			wind=Array.new(40, 0)
 			windp=Array.new(40, 0)
 
-			regex = /".*?,.*?,.*?,.*?,.*?,.*?,[0-9]"/ 
+			regex = /"[^"]*(?=",)/ 
 			regex1 = /skyid([^k]*\n)*/
 
 			#0 日期 1 2天气情况 3温度 4风向 5 风力
@@ -58,6 +60,7 @@ module Lita
 
 			cut=Array.new(5, 0)
 			data.scan(regex).each{|m|
+				puts m
 				detial = m.split(",")
 				detial[0][0] = ""
 				date[counter] = "time:"+detial[0]
@@ -66,22 +69,30 @@ module Lita
 				wind[counter] = "wind:"+detial[4]
 				windp[counter] = "windpower:"+detial[5]
 				counter = counter+1
+
 			}
 
 			counter=0
 			time = Time.new
-			hour = time.hour+8
-			a=date[0][10,2]
+			hour = time.hour
+			day  = time.day
+			a=date[0]
+			b=date[0][5,2]
+
 
 			# response.reply(hour.to_s)
 
-			while a.to_i<hour
+			while a[10,2].to_i<=hour 
 				counter=counter+1
+				if a[5,2].to_i<date[counter][5,2].to_i then
+					break
+				end
 				a=date[counter][10,2]
+
 				# response.reply(hour)
 				# response.reply(counter)
 			end
-
+			response.reply(mes.to_s)
 			response.reply("当前天气情况：")
 
 			response.reply(date[counter])
@@ -103,7 +114,7 @@ module Lita
 			counter = 0
 			counter1 = 0
 
-			data_begin_1 = search_result.index('sky skyid')
+			data_begin_1 = search_result.index('t clearfix')
 			data_end_1 = search_result.index('<i class="line1"></i>')
 
 			data_1 = search_result[data_begin_1,data_end_1-data_begin_1]
@@ -121,13 +132,13 @@ module Lita
 			data_1.scan(regex_weather).each{|m|
 				puts m[9,m.length-9]
 				# ad = (8-m.size.to_i)*empty
-				ac = 11-(m[9,m.length-9].length.to_i)/2
+				ac = 13-(m[9,m.length-9].length.to_i)/2
 				ad = "*"*ac
 				weather_list = weather_list + m[9,m.length-9]+ad
 			}
 			data_1.scan(regex_low_tem).each{|m|
 				puts m[3,m.length-5]
-				ac = 10-(m[3,m.length-5].length.to_i)/2
+				ac = 11-(m[3,m.length-5].length.to_i)/2
 				ad = "*"*ac
 				if(counter==0)
 					counter=1
@@ -139,7 +150,7 @@ module Lita
 			}
 			data_1.scan(regex_high_tem).each{|m|
 				puts m[6,m.length-6]
-				ac = 11-(m[6,m.length-6].length.to_i)/2
+				ac = 12-(m[6,m.length-6].length.to_i)/2
 				ad = "*"*ac
 				high_tem_list = high_tem_list + m[6,m.length-6]+ad
 
@@ -162,13 +173,17 @@ module Lita
 			response.reply(weather_list)
 			response.reply(low_tem_list)
 			
-			ac = low_tem_list.length-high_tem_list.length
+			if low_tem_list.length-high_tem_list.length>0
+				ac =20
+			end
 			ad = "*"*(ac/1.8)
 			high_tem_list = "high_tem:"+ad + high_tem_list
 			response.reply(high_tem_list)
 			response.reply(windp_list)
 			if(wind_list1.length>wind_list2.length)
-				ac = wind_list1.length-wind_list2.length
+				if wind_list1.length-wind_list2.length>0
+					ac=12
+				end
 				ad = "*"*ac
 				wind_list2 = ad + wind_list2
 				response.reply("PM_wind:"+wind_list2)
